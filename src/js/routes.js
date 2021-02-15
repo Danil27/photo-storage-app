@@ -1,11 +1,10 @@
-import Store from '@/store'
-
 import Router from 'vue-router'
 import User from '../pages/user.vue'
 import Gallery from '../pages/gallery.vue'
 import LoadPhoto from '../pages/load-photo'
 import Login from '../pages/login.vue'
 import Home from '../pages/home.vue'
+import store from '../store'
 
 export default new Router({
   routes: [
@@ -46,6 +45,6 @@ export default new Router({
 })
 
 function checkAuth(to, from, next) {
-  if (Store.state.auth.user) next()
+  if (store.state.auth.token) next()
   else next({ name: 'login' })
 }

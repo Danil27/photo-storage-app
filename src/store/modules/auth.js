@@ -12,7 +12,6 @@ const mutations = {
 
   CLEAR_ALL(s) {
     s.token = null
-
     localStorage.removeItem('token')
   }
 }
@@ -23,14 +22,10 @@ export default {
   mutations,
 }
 
-
 function getTokenFromLocalStorage() {
   const token = localStorage.getItem('token')
-  console.log(token)
-
   if (token) {
     return token
   }
-
   return null
 }

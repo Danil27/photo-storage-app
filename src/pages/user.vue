@@ -11,8 +11,10 @@
     <div class="user__info">
       <Profile v-if="editEnabled" />
       <EditProfile v-else />
-      <b-button variant="primary" v-if="editEnabled" @click="editProfile">Редактировать</b-button>
+      <b-button variant="primary" v-if="editEnabled" @click="editProfile"
+        >Редактировать</b-button>
       <b-button variant="success" v-else @click="editProfile">Сохранить</b-button>
+      <b-button variant="danger" class="ml-3" @click="exitProfile">Выйти</b-button>
     </div>
   </div>
 </template>
@@ -31,6 +33,10 @@ export default {
     };
   },
   methods: {
+    exitProfile(){
+      this.$store.commit("auth/CLEAR_ALL");
+      this.$router.push('/login')
+    },
     editProfile() {
       this.editEnabled = !this.editEnabled;
     },
@@ -38,16 +44,16 @@ export default {
 };
 </script>
 <style>
-.user{
-    display: flex;
-    flex-direction: row;
-    width: 820px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
+.user {
+  display: flex;
+  flex-direction: row;
+  width: 820px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
-.user__info{
-    margin-left: 20px;
+.user__info {
+  margin-left: 20px;
 }
 </style>

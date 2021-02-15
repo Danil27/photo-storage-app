@@ -15,23 +15,16 @@ export default {
                 password: user.password,
             });
 
-            try {
-                const {
-                    data
-                } = await axios({
-                    method: "post",
-                    url: "/front/auth",
-                    headers,
-                    data: dataA,
-                });
-                if (data.token) {
-                    response =  data.token
-                }
-
-            } catch (e) {
-                response = {
-                    message: e.message
-                };
+            const { data } = await axios({
+                method: "post",
+                url: "/front/auth",
+                headers,
+                data: dataA,
+            }).catch((err) => {
+                return err
+            });
+            if (data.token) {
+                response = data.token
             }
             return response
         },
