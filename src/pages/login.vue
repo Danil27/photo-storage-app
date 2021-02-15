@@ -38,9 +38,13 @@ export default {
 
     methods: {
         async authorization() {
-            await this.$store.dispatch("login/authorization", {
+            const token = await this.$store.dispatch("login/authorization", {
                 user :this.user,
             });
+            await this.$store.commit("auth/SET_TOKEN", {
+                token,
+            });
+            
         },
     },
 };

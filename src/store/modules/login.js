@@ -1,14 +1,11 @@
 import axios from "../../plugins/axios";
+
 export default {
     namespaced: true,
 
     actions: {
-        async authorization({
-            commit
-        }, {
-            user
-        }) {
-            console.log('11111' + commit)
+        async authorization({ commit }, { user }) {
+            (commit)
             let response = null;
             const headers = {
                 "content-type": "application/json"
@@ -28,8 +25,7 @@ export default {
                     data: dataA,
                 });
                 if (data.token) {
-                    localStorage.setItem('token', data.token)
-                    
+                    response =  data.token
                 }
 
             } catch (e) {

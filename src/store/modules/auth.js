@@ -1,14 +1,13 @@
 const namespaced = true
 
-
 const state = () => ({
   token: getTokenFromLocalStorage(),
 })
 
 const mutations = {
-  SET_TOKEN(s, payload) {
-    s.token = payload
-    localStorage.setItem('token', payload)
+  SET_TOKEN(s, playload) {
+    s.token = playload
+    localStorage.setItem('token', playload.token)
   },
 
   CLEAR_ALL(s) {
