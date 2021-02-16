@@ -3,7 +3,7 @@
     <div class="mt-3">
       Выберете файл для загрузки: {{ file ? file.name : "" }}
     </div>
-    <b-form-file v-on:change="handleFileUpload()" class="mt-3" plain></b-form-file>
+     <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
     <b-button variant="success" @click="sendPhoto">Сохранить</b-button>
   </div>
 </template>
@@ -19,13 +19,14 @@ export default {
   },
   methods: {
     handleFileUpload() {
-      this.file = this.$refs.file.files[0];
+      console.log(this.$refs.file)
+      this.file = this.$refs.file.files[0]
     },
     sendPhoto() {
       let formData = new FormData();
-      formData.append("file", this.file);
+      formData.append('file', this.file);
       axios
-        .post("/front/loadPhoto", formData)
+        .post("/front/photo/save", formData)
         .catch((err) => {
           alert("Cannot upload file." + err);
         });
