@@ -6,27 +6,29 @@
         :key="index"
         thumbnail
         fluid
-        :src="item"
+        :src="base_url + item"
         class="gallery__content-item"
       ></b-img>
     </div>
   </div>
 </template>
 <script>
+import axios from "../plugins/axios";
+
 export default {
   name: "gallery",
   data() {
     return {
       slide: 0,
       sliding: null,
-      imgs: [
-        "https://picsum.photos/250/250/?image=54",
-        "https://picsum.photos/250/250/?image=58",
-        "https://picsum.photos/250/250/?image=59",
-        "https://picsum.photos/250/250/?image=54",
-        "https://picsum.photos/250/250/?image=58",
-      ],
+      imgs: null,
+      base_url: 'http://localhost:3000/images/'
     };
+  },
+  async mounted(){
+    const { data } = await axios.get('/front/photo/get');
+    this.imgs = data
+    console.log(this.base_url + this.item)
   },
   methods: {
     onSlideStart() {
@@ -48,6 +50,8 @@ export default {
 .gallery__content-item {
   margin-top: 20px;
   margin-left: 20px;
+  max-width: 250px;
+  height: 250px;
 }
 .gallery {
   margin: 20px auto;

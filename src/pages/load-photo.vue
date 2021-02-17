@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     handleFileUpload() {
-      console.log(this.$refs.file)
       this.file = this.$refs.file.files[0]
     },
     sendPhoto() {
@@ -27,6 +26,10 @@ export default {
       formData.append('file', this.file);
       axios
         .post("/front/photo/save", formData)
+        .then(() => {
+          this.file = null
+          this.$router.push("/gallery");
+        })
         .catch((err) => {
           alert("Cannot upload file." + err);
         });
