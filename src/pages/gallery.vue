@@ -22,15 +22,17 @@ export default {
       slide: 0,
       sliding: null,
       imgs: null,
-      base_url: 'http://localhost:3000/images/'
+      base_url: 'https://pstorage27.herokuapp.com/images/'
     };
   },
-  async mounted(){
-    const { data } = await axios.get('/front/photo/get');
-    this.imgs = data
-    console.log(this.base_url + this.item)
+  mounted(){
+     this.getImgs;
   },
   methods: {
+    async getImgs(){
+      const { data } = await axios.get('/front/photo/get');
+      this.imgs = data
+    },
     onSlideStart() {
       this.sliding = true;
     },
